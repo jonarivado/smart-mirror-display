@@ -1,16 +1,16 @@
 <div class="grid grid-cols-3 grid-rows-2 gap-2 pl-4 pr-4 h-screen w-screen bg-black" >
     <ng-container *ngFor="let component of userComponents">
-        <div *ngIf="component.id == 'empty' " class="flex items-center justify-center">
+        <div *ngIf="component.id == 'empty' " class="flex items-center justify-center {{positions.empty}}">
             
         </div>
     </ng-container>
     <ng-container *ngFor="let component of userComponents">
-    <div *ngIf="component.id == 'weather'" class="">
+    <div *ngIf="component.id == 'weather'" class="{{positions.weather}}">
         <app-weather></app-weather>
     </div>
 </ng-container>
 <ng-container *ngFor="let component of userComponents">
-    <div *ngIf="component.id == 'clock' " class="">
+    <div *ngIf="component.id == 'clock' " class="{{positions.clock}}">
         <app-clock></app-clock>
     </div>
 </ng-container>

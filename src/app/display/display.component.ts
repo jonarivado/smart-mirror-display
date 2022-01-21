@@ -27,7 +27,7 @@ export class DisplayComponent implements OnInit {
         },
         {
             "id": "clock",
-            "position": 2,
+            "position": 6,
             "size": [2, 1],
             "clockType": "analog"
         },
@@ -35,26 +35,39 @@ export class DisplayComponent implements OnInit {
           "id": "empty",
           "position": 3,
           "size": [2, 1]
-      },
-      {
-        "id": "empty",
-        "position": 4,
-        "size": [2, 1]
-    }
+        },
+        {
+          "id": "empty",
+          "position": 4,
+          "size": [2, 1]
+        }
     ];
   }
 
   ngOnInit(): void {
-    for(let i in this.userComponents) {
-      let obj: any = {};
-      let key = this.userComponents.id;
-      console.log(key);
-      if(this.userComponents.position == 1) {
-        obj[key] = "col-start-1 row-start-1";
-      }
-      this.positions.push(obj);
-    }
-    console.log(this.positions);
-  }
 
+    for(let i in this.userComponents) {
+      let key: any = this.userComponents[i].id;
+      switch(this.userComponents[i].position) {
+        case 1:
+          this.positions[key] = 'col-start-1 row-start-1';
+          break;
+        case 2:
+          this.positions[key] = 'col-start-2 row-start-1';
+          break;
+        case 3:
+          this.positions[key] = 'col-start-3 row-start-1';
+          break;
+        case 4:
+          this.positions[key] = 'col-start-1 row-start-2';
+          break;
+        case 5:
+          this.positions[key] = 'col-start-2 row-start-2';
+          break;
+        case 6:
+          this.positions[key] = 'col-start-3 row-start-2';
+          break;
+      } 
+    }
+  }
 }
