@@ -1,0 +1,17 @@
+<div class="grid grid-cols-3 grid-rows-2 gap-2 pl-4 pr-4 h-screen w-screen bg-black" >
+    <ng-container *ngFor="let component of userComponents">
+        <div *ngIf="component.id == 'empty' " class="flex items-center justify-center">
+            
+        </div>
+    </ng-container>
+    <ng-container *ngFor="let component of userComponents">
+    <div *ngIf="component.id == 'weather'" class="">
+        <app-weather></app-weather>
+    </div>
+</ng-container>
+<ng-container *ngFor="let component of userComponents">
+    <div *ngIf="component.id == 'clock' " class="">
+        <app-clock></app-clock>
+    </div>
+</ng-container>
+</div>

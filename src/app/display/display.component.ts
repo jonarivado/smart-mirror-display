@@ -1,18 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-display',
+  templateUrl: './display.component.html',
+  styleUrls: ['./display.component.scss']
 })
-export class AppComponent {
-  title = 'smart-mirror-display';
+export class DisplayComponent implements OnInit {
 
   userData?: any = {};
   userComponents?: any;
   positions?: any = [];
-
-  time: any = true;
 
   constructor() {
     this.userData = {
@@ -38,8 +35,26 @@ export class AppComponent {
           "id": "empty",
           "position": 3,
           "size": [2, 1]
-      }
+      },
+      {
+        "id": "empty",
+        "position": 4,
+        "size": [2, 1]
+    }
     ];
+  }
+
+  ngOnInit(): void {
+    for(let i in this.userComponents) {
+      let obj: any = {};
+      let key = this.userComponents.id;
+      console.log(key);
+      if(this.userComponents.position == 1) {
+        obj[key] = "col-start-1 row-start-1";
+      }
+      this.positions.push(obj);
+    }
+    console.log(this.positions);
   }
 
 }
