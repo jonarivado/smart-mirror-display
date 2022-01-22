@@ -23,7 +23,7 @@ export class DisplayComponent implements OnInit {
     this.userComponents = [
         {
             "id": "weather",              // response depends on the component type, feel free to change 
-            "position": 4,
+            "position": 2,
             "size": [2, 1],
             "locationString": "Dübendorf"
         },

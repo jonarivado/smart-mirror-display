@@ -1,6 +1,6 @@
 
-
-<div class="grid grid-cols-2 text-white gap-2 items-center">
+<div class="place-self-center">
+<div class="grid grid-cols-2 text-white gap-2 p-2">
     <div>
         <img src="../../../assets/img/weather/{{(weatherData | async)?.current_weather.weathercode}}.svg" alt="" srcset="">
     </div>
@@ -18,3 +18,4 @@
     <div class="text-xl text-center" id="wind"> {{(weatherData | async)?.current_weather.windspeed + ' km/h'}}</div>
   </div>
   </div>
+</div>

@@ -5,7 +5,7 @@
         </div>
     </ng-container>
     <ng-container *ngFor="let component of userComponents">
-    <div *ngIf="component.id == 'weather'" class="{{positions.weather}}">
+    <div *ngIf="component.id == 'weather'" class="{{positions.weather}} border-l-2 place-items-center">
         <app-weather></app-weather>
     </div>
 </ng-container>
