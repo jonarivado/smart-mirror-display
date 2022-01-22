@@ -23,26 +23,17 @@ export class DisplayComponent implements OnInit {
     this.userComponents = [
         {
             "id": "weather",              // response depends on the component type, feel free to change 
-            "position": 1,
+            "position": 4,
             "size": [2, 1],
             "locationString": "Dübendorf"
         },
         {
             "id": "clock",
-            "position": 6,
+            "position": 1,
             "size": [2, 1],
             "clockType": "analog"
         },
-        {
-          "id": "empty",
-          "position": 3,
-          "size": [2, 1]
-        },
-        {
-          "id": "empty",
-          "position": 4,
-          "size": [2, 1]
-        }
+        
     ];
   }
 

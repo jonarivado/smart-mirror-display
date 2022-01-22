@@ -8,6 +8,8 @@ import { ClockComponent } from './components/clock/clock.component';
 import { DisplayComponent } from './display/display.component';
 import { WeatherComponent } from './components/weather/weather.component';
 
+import { WeatherdataService } from './services/weatherdata.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,7 @@ import { WeatherComponent } from './components/weather/weather.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [WeatherdataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
