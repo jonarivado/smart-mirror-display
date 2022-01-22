@@ -10,6 +10,8 @@ export class DisplayComponent implements OnInit {
   userData?: any = {};
   userComponents?: any;
   positions?: any = [];
+  emptyPositions: any;
+
 
   constructor() {
     this.userData = {
@@ -69,5 +71,6 @@ export class DisplayComponent implements OnInit {
           break;
       } 
     }
+    this.emptyPositions = Array(6-this.userComponents.length).fill(0);
   }
 }
