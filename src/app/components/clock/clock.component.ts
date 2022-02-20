@@ -1,15 +1,15 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-clock',
   templateUrl: './clock.component.html',
-  styleUrls: ['./clock.component.scss']
+  styleUrls: ['./clock.component.scss'],
 })
 export class ClockComponent implements OnInit {
-
   @Input() type?: string = '';
 
   time: any;
+  data: any;
 
   refreshTime() {
     let now: Date = new Date();
@@ -17,8 +17,9 @@ export class ClockComponent implements OnInit {
     let minutes = now.getMinutes();
     let seconds = now.getSeconds();
     let secondsString = seconds < 10 ? '0' + seconds : seconds;
-    let minutesString  = minutes < 10 ? '0' + minutes : minutes;
-    this.time =  hours + ':' + minutesString + ':' + secondsString;
+    let minutesString = minutes < 10 ? '0' + minutes : minutes;
+    this.time = hours + ':' + minutesString + ':' + secondsString;
+    this.data = [];
   }
 
   ngAfterViewInit() {
@@ -27,9 +28,7 @@ export class ClockComponent implements OnInit {
       this.refreshTime();
     }, 1000);
   }
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
