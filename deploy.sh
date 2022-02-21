@@ -1,7 +1,7 @@
 echo -n "Please enter a build message:"
 read message
 
-npx sng build
+npx ng build
 
 xcopy dist\smart-mirror-display ..\smart-mirror-deployment\.
 
