@@ -1,39 +1,87 @@
-import { HttpClient } from '@angular/common/http';
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { delay, share } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable, share } from 'rxjs';
+
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.scss']
+  styleUrls: ['./weather.component.scss'],
 })
-export class WeatherComponent implements OnInit {
-
+export class WeatherComponent {
   weatherData!: Observable<any>;
-  weatherIcon!: string;
-  getWeatherIcon(weatherCode: number) {
-    switch (weatherCode) {
-      case 25:
-        this.weatherIcon = 'wi-day-sunny';
-        break;
+
+  WEATHER_API_KEY = '9a48ea7d19a72a24440fbb791b7f0a55';
+  LATITUDE = 47.398577;
+  LONGITUDE = 8.599249;
+  NUM_DAYS = 4;
+
+  temperature: number;
+  wind: number;
+  rain: number;
+  weather_icon: string;
+
+  constructor(private http: HttpClient) {
+    this.weatherData = this.http
+      .get(
+        `https://api.open-meteo.com/v1/forecast?latitude=${this.LATITUDE}&longitude=${this.LONGITUDE}&daily=apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&timezone=Europe%2FBerlin`
+      )
+      .pipe(share());
+    this.weatherData.subscribe(this.parseWeatherData.bind(this));
+  }
+
+
+  forecast: Array<Record<string, number | string>>;
+
+  toDayString(weekday: number): string {
+    switch (weekday % 7) {
+      case 0:
+        return 'So';
+      case 1:
+        return 'Mo';
+      case 2:
+        return 'Di';
+      case 3:
+        return 'Mi';
+      case 4:
+        return 'Do';
+      case 5:
+        return 'Fr';
+      default:
+        return 'Sa';
     }
   }
 
-  constructor(private http:HttpClient) { 
-    this.weatherData = this.http.get('https://api.open-meteo.com/v1/forecast?latitude=52.5235&longitude=13.4115&daily=temperature_2m_max,temperature_2m_min&current_weather=true&timezone=Europe%2FBerlin')
-    .pipe(share());
-    this.weatherData.subscribe(data => {
-      if (data.current_weather.weathercode == 2) {
-        this.weatherIcon = 'wi-day-sunny';
-      }
-    });
+  toSVGPath(iconID: string): string {
+    iconID = iconID.replace('n', 'd');
+    return `src/img/weather/${iconID}.svg`;
   }
 
-  ngOnInit(): void {
+  parseWeatherData(data: any) {
+    console.log(data);
+
+    this.temperature = Math.round(data.current_weather.temperature);
+    this.wind = Math.round(data.current_weather.windspeed);
+    this.weather_icon = data.current_weather.weathercode;
+
+    this.rain = Math.round(data.daily.precipitation_sum[0]);
     
+    this.forecast = [];
 
-  }
-  ngAfterViewInit() {
-  }
+    for (let i = 1; i <= this.NUM_DAYS; i++) {
+      const today = new Date();
+      const weekday = this.toDayString(today.getDay() + i);
 
+      const minTemperature = Math.round(data.daily.apparent_temperature_min[i]);
+      const maxTemperature = Math.round(data.daily.apparent_temperature_max[i]);
+      const icon = data.current_weather.weathercode;
+
+      this.forecast.push({
+        min: minTemperature,
+        max: maxTemperature,
+        weekday: weekday,
+        weather_icon: icon,
+      });
+    }
+  }
 }

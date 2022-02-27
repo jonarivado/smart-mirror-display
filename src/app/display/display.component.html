@@ -1,17 +1,16 @@
-<div class="grid grid-cols-3 grid-rows-2 gap-2 pl-4 pr-4 h-screen w-screen bg-black" >
-    <ng-container *ngFor="let empty of emptyPositions">
-        <div class="flex items-center justify-center">
-            
-        </div>
-    </ng-container>
-    <ng-container *ngFor="let component of userComponents">
-    <div *ngIf="component.id == 'weather'" class="{{positions.weather}} border-l-2 place-items-center">
-        <app-weather></app-weather>
+<div
+  class="grid grid-cols-3 grid-rows-2 gap-2 pl-4 pr-4 h-screen w-screen bg-black text-white"
+>
+  <ng-container *ngFor="let component of userComponents">
+    <div
+      *ngIf="component.id == 'empty'"
+      class="flex items-center justify-center {{ component.classes }}"
+    ></div>
+    <div *ngIf="component.id == 'weather'" class="{{ component.classes }}">
+      <app-weather></app-weather>
     </div>
-</ng-container>
-<ng-container *ngFor="let component of userComponents">
-    <div *ngIf="component.id == 'clock' " class="{{positions.clock}}">
-        <app-clock></app-clock>
+    <div *ngIf="component.id == 'clock'" class="{{ component.classes }}">
+      <app-clock></app-clock>
     </div>
-</ng-container>
+  </ng-container>
 </div>
