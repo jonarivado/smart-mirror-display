@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class DisplayComponent implements OnInit {
   userComponents: IComponent[];  
+  emptyPositions: IComponent[];
 
   constructor(
     private authService: FireAuthService,
@@ -41,12 +42,13 @@ export class DisplayComponent implements OnInit {
         case 6:
           classes = 'col-start-3 row-start-2';
           break;
-        default:          
-          console.log(component.position == 2)
       }
 
+      classes += ` row-span-${component.height} col-span-${component.width}`
+      
       component.classes = classes;
     }
+    this.emptyPositions = Array(6-this.userComponents.length).fill(0);
   }
 
   async ngOnInit(): Promise<void> {
