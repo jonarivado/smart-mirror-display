@@ -14,7 +14,7 @@ export class WeatherComponent {
   WEATHER_API_KEY = '9a48ea7d19a72a24440fbb791b7f0a55';
   LATITUDE = 47.398577;
   LONGITUDE = 8.599249;
-  NUM_DAYS = 4;
+  NUM_DAYS = 5;
 
   temperature: number;
   wind: number;
@@ -24,7 +24,7 @@ export class WeatherComponent {
   constructor(private http: HttpClient) {
     this.weatherData = this.http
       .get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${this.LATITUDE}&longitude=${this.LONGITUDE}&daily=apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&timezone=Europe%2FBerlin`
+        `https://api.open-meteo.com/v1/forecast?latitude=${this.LATITUDE}&longitude=${this.LONGITUDE}&daily=apparent_temperature_max,apparent_temperature_min,precipitation_sum,weathercode&current_weather=true&timezone=Europe%2FBerlin`
       )
       .pipe(share());
     this.weatherData.subscribe(this.parseWeatherData.bind(this));
@@ -74,7 +74,7 @@ export class WeatherComponent {
 
       const minTemperature = Math.round(data.daily.apparent_temperature_min[i]);
       const maxTemperature = Math.round(data.daily.apparent_temperature_max[i]);
-      const icon = data.current_weather.weathercode;
+      const icon = data.daily.weathercode[i];
 
       this.forecast.push({
         min: minTemperature,
