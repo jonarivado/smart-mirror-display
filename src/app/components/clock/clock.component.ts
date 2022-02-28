@@ -5,23 +5,27 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './clock.component.html',
   styleUrls: ['./clock.component.scss'],
 })
-export class ClockComponent implements OnInit {
+export class ClockComponent {
   @Input() type?: string = '';
 
-  time: any;
-  data: any;
-
-  refreshTime() {
-    
-  }
-
+  hours: string;
+  minutes: string;
+  
   ngAfterViewInit() {
     this.refreshTime();
     setInterval(() => {
       this.refreshTime();
     }, 1000);
   }
-  constructor() {}
+  
+  refreshTime() {
+    const now = new Date();
 
-  ngOnInit(): void {}
+    this.hours = now.getHours().toString();
+    this.minutes = now.getMinutes().toString();
+    
+    if (this.minutes.length == 1) {
+      this.minutes = "0" + this.minutes;
+    }
+  }
 }
