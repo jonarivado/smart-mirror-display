@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   Auth,
-  signInWithPopup,
+  signInWithRedirect,
   GoogleAuthProvider,
+  getRedirectResult,
 } from '@angular/fire/auth';
 
 @Injectable({
@@ -18,8 +19,15 @@ export class FireAuthService {
   }
 
   async login() {    
-    const user = await signInWithPopup(this.auth, new GoogleAuthProvider());
-    localStorage.setItem('user', JSON.stringify(user.user));
+    signInWithRedirect(this.auth, new GoogleAuthProvider());
+  }
+
+  async storeUser() {
+    const result = await getRedirectResult(this.auth)
+    
+    if (result) {
+      localStorage.setItem('user', JSON.stringify(result.user));
+    }
   }
   
   async logout() {

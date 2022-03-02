@@ -7,7 +7,7 @@
       class="flex items-center justify-center {{ component.classes }}"
     ></div>
     <div *ngIf="component.id == 'weather'" class="{{ component.classes }}">
-      <app-weather></app-weather>
+      <app-weather latitude="{{ component.properties['latitude'] }}"></app-weather>
     </div>
     <div *ngIf="component.id == 'clock'" class="{{ component.classes }}">
       <app-clock></app-clock>

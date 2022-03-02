@@ -1,5 +1,5 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, share } from 'rxjs';
 
@@ -10,6 +10,8 @@ import { Observable, share } from 'rxjs';
 })
 export class WeatherComponent {
   weatherData!: Observable<any>;
+
+  @Input() latitude: any;
 
   WEATHER_API_KEY = '9a48ea7d19a72a24440fbb791b7f0a55';
   LATITUDE = 47.398577;
