@@ -57,7 +57,7 @@ export class SbbComponent implements OnInit {
     const plannedDeparture = nextConnection.from.departure;
     const plannedArrival = nextConnection.to.arrival;
     const predictedDeparture = nextConnection.from.prognosis.departure;
-    console.log(this.formatTimeString(plannedDeparture));
+    
     return new Array(this.formatTimeString(plannedDeparture), this.formatTimeString(plannedArrival), this.getDelay(plannedDeparture, predictedDeparture));
   }
 

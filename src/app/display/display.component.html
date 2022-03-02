@@ -15,5 +15,8 @@
     <div *ngIf="component.id == 'sbb'" class="{{ component.classes }}">
       <app-sbb start="{{component.properties['start']}}" [destinations]="component.properties['destinations']"></app-sbb>
     </div>
+    <div *ngIf="component.id == 'memes'" class="{{ component.classes }}">
+      <app-memes></app-memes>
+    </div>
   </ng-container>
 </div>
