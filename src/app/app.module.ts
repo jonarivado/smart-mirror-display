@@ -14,13 +14,15 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { HttpClientModule } from '@angular/common/http';
 
 import { WeatherdataService } from './services/weatherdata.service';
+import { SbbComponent } from './components/sbb/sbb.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClockComponent,
     DisplayComponent,
-    WeatherComponent
+    WeatherComponent,
+    SbbComponent
   ],
   imports: [
     BrowserModule,
