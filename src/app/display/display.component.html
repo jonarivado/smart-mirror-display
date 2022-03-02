@@ -12,5 +12,8 @@
     <div *ngIf="component.id == 'clock'" class="{{ component.classes }}">
       <app-clock></app-clock>
     </div>
+    <div *ngIf="component.id == 'sbb'" class="{{ component.classes }}">
+      <app-sbb start="{{component.properties['start']}}" [destinations]="component.properties['destinations']"></app-sbb>
+    </div>
   </ng-container>
 </div>
