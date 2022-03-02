@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { FireAuthService } from '../services/fireauth.service';
 import { FirestoreService, IComponent } from 'src/app/services/firestore.service';
 import { Observable } from 'rxjs';
@@ -8,9 +8,10 @@ import { Observable } from 'rxjs';
   templateUrl: './display.component.html',
   styleUrls: ['./display.component.scss'],
 })
-export class DisplayComponent implements OnInit {
+export class DisplayComponent implements AfterContentInit {
   userComponents: IComponent[];  
   emptyPositions: IComponent[];
+  signedOut: boolean;
 
   constructor(
     private authService: FireAuthService,
@@ -51,16 +52,27 @@ export class DisplayComponent implements OnInit {
     this.emptyPositions = Array(6-this.userComponents.length).fill(0);
   }
 
-  async ngOnInit(): Promise<void> {
+  async ngAfterContentInit(): Promise<void> {    
+    this.signedOut = true;
+
     if (localStorage.getItem('user')) {
       this.subscribe();
+      this.signedOut = false;
     } else {
-      await this.authService.login();
-      this.subscribe();
+      await this.authService.storeUser();
+      
+      if (localStorage.getItem('user')) {
+        this.signedOut = false;
+        this.subscribe();
+      }
     }
   }
 
-  subscribe(): void {    
+  async login(): Promise<void> {
+    this.authService.login();
+  }
+
+  subscribe(): void {
     this.firestoreService.getAll()?.subscribe((data) => {
       this.userComponents = data;
       this.augmentComponentClasses();      

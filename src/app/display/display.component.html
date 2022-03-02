@@ -13,4 +13,6 @@
       <app-clock></app-clock>
     </div>
   </ng-container>
+
+  <button (click)="login()"  *ngIf="this.signedOut" class="bg-red-800">Login</button>
 </div>
