@@ -3,7 +3,7 @@ read message
 
 npx ng build
 
-xcopy dist\\smart-mirror-display ..\\smart-mirror-deployment\\.
+xcopy dist\\smart-mirror-display ..\\smart-mirror-deployment\\ /E
 
 cd ..\\smart-mirror-deployment
 git add .
