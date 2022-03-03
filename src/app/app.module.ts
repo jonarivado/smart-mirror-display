@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { WeatherdataService } from './services/weatherdata.service';
 import { SbbComponent } from './components/sbb/sbb.component';
 import { MemesComponent } from './components/memes/memes.component';
+import { TodoComponent } from './components/todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MemesComponent } from './components/memes/memes.component';
     DisplayComponent,
     WeatherComponent,
     SbbComponent,
-    MemesComponent
+    MemesComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
