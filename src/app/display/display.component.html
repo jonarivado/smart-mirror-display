@@ -15,13 +15,13 @@
     <div *ngIf="component.id == 'sbb'" class="{{ component.classes }}">
       <app-sbb start="{{component.properties['start']}}" [destinations]="component.properties['destinations']"></app-sbb>
     </div>
-    <div *ngIf="component.id == 'memes'" class="{{ component.classes }}">
+    <div *ngIf="component.id == 'meme'" class="{{ component.classes }}">
       <app-memes></app-memes>
     </div>
     <div *ngIf="component.id == 'todo'" class="{{ component.classes }}">
       <app-todo [entries]="component.properties['entries']"></app-todo>
     </div>
   </ng-container>
-
+  
   <button (click)="login()"  *ngIf="this.signedOut" class="bg-red-800">Login</button>
 </div>
