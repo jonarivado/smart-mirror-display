@@ -1,5 +1,5 @@
 <div
-  class="grid grid-cols-3 grid-rows-2 gap-2 pl-4 overflow-hidden pr-4 h-screen max-h-screen w-screen bg-black text-white"
+  class="grid grid-cols-3 grid-rows-2 gap-4 pl-4 overflow-hidden pr-4 h-screen max-h-screen w-screen bg-black text-white"
 >
   <ng-container *ngFor="let component of userComponents">
     <div
@@ -12,7 +12,7 @@
     <div *ngIf="component.id == 'clock'" class="{{ component.classes }}">
       <app-clock></app-clock>
     </div>
-    <div *ngIf="component.id == 'sbb'" class="{{ component.classes }}">
+    <div *ngIf="component.id == 'sbb'" class="{{ component.classes }} flex items-end h-full justify-items-end pb-12">
       <app-sbb start="{{component.properties['start']}}" [destinations]="component.properties['destinations']"></app-sbb>
     </div>
     <div *ngIf="component.id == 'meme'" class="{{ component.classes }}">
