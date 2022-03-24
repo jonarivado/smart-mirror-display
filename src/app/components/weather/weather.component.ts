@@ -24,12 +24,22 @@ export class WeatherComponent {
   weather_icon: string;
 
   constructor(private http: HttpClient) {
+    this.updateWeather();
+  }
+
+  updateWeather() {
     this.weatherData = this.http
-      .get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${this.LATITUDE}&longitude=${this.LONGITUDE}&daily=apparent_temperature_max,apparent_temperature_min,precipitation_sum,weathercode&current_weather=true&timezone=Europe%2FBerlin`
-      )
-      .pipe(share());
-    this.weatherData.subscribe(this.parseWeatherData.bind(this));
+    .get(
+      `https://api.open-meteo.com/v1/forecast?latitude=${this.LATITUDE}&longitude=${this.LONGITUDE}&daily=apparent_temperature_max,apparent_temperature_min,precipitation_sum,weathercode&current_weather=true&timezone=Europe%2FBerlin`
+    )
+    .pipe(share());
+  this.weatherData.subscribe(this.parseWeatherData.bind(this));
+  }
+  
+  async ngAfterViewInit() {
+    setInterval(() => {
+      this.updateWeather();
+    }, 3600000);
   }
 
 

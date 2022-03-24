@@ -16,6 +16,15 @@ export class SbbComponent implements OnInit {
   constructor() { }
 
   async ngOnInit(): Promise<void> {
+    this.updateSbbDepartures();
+  }
+  async ngAfterViewInit() {
+    setInterval(() => {
+      this.updateSbbDepartures();
+    }, 300000);
+  }
+
+  async updateSbbDepartures() {
     for (let i = 0; i < this.destinations.length; i++) {
       let currentConnection: Record<string, any> = {};
       let sbbTimes = await this.getSbbDepartures(this.destinations[i]);
