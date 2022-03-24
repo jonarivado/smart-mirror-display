@@ -1,5 +1,6 @@
-<div class="text-6xl font-bold justify-items-center text-left" id="verbindungen-titel">Verbindungen</div>
-        <div *ngFor="let connection of connections" class="grid grid-cols-12 gap-y-2">
+<div class="">
+<div class="text-6xl font-bold justify-items-center text-left " id="verbindungen-titel">Verbindungen</div>
+        <div *ngFor="let connection of connections" class="grid grid-cols-12 gap-y-2 ">
           <div id="eth-dep">{{connection['departure']}}</div>
           <div id="eth-delay" *ngIf="connection['delay'] > 0" class="bg-red-700 rounded-full h-5 w-5 place-self-start text-center text-xs">{{connection['delay']}}</div>
           <div class="col-start-10 col-span-2">{{connection['destination']}}</div>
@@ -7,4 +8,4 @@
           <img src="../../../assets/img/trains/trainline.svg" class="col-span-12">
             
         </div>
-        
+      </div>
