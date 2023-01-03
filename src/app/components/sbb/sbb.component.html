@@ -1,11 +1,10 @@
 <div class="">
-<div class="text-6xl font-bold justify-items-center text-left " id="verbindungen-titel">Verbindungen</div>
-        <div *ngFor="let connection of connections" class="grid grid-cols-12 gap-y-2 ">
-          <div id="eth-dep">{{connection['departure']}}</div>
-          <div id="eth-delay" *ngIf="connection['delay'] > 0" class="bg-red-700 rounded-full h-5 w-5 place-self-start text-center text-xs">{{connection['delay']}}</div>
-          <div class="col-start-10 col-span-2">{{connection['destination']}}</div>
-          <div id="eth-arr" class="col-start-12 text-right">{{connection['arrival']}}</div>
-          <img src="../../../assets/img/trains/trainline.svg" class="col-span-12">
-            
-        </div>
-      </div>
+  <div class="text-6xl font-bold justify-items-center text-left mb-4" id="verbindungen-titel">Verbindungen</div>
+  <div *ngFor="let connection of connections" class="grid grid-cols-12 gap-y-2 mt-0">
+    <div id="eth-dep">{{connection['departure']}}</div>
+    <div id="eth-delay" *ngIf="connection['delay'] > 0" class="bg-red-700 rounded-full h-5 w-5 place-self-start text-center text-xs">{{connection['delay']}}</div>
+    <div class="col-start-9 col-span-3">{{connection['destination']}}</div>
+    <div id="eth-arr" class="col-start-12 text-right">{{connection['arrival']}}</div>
+    <img src="../../../assets/img/trains/trainline.svg" class="col-span-12 mb-6">
+  </div>
+</div>
