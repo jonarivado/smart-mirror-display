@@ -14,10 +14,10 @@ export class FireAuthService {
     this.auth.onAuthStateChanged((user) => {
       if (!user) {
         localStorage.setItem('user', '');
-      } else {
+      } else if (localStorage.getItem('user') === '') {
         localStorage.setItem('user', JSON.stringify(user));
+        window.location.reload();
       }
-      window.location.reload();
     });
   }
 
