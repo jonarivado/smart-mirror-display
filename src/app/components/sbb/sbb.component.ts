@@ -19,7 +19,7 @@ export class SbbComponent implements OnInit {
   async ngAfterViewInit() {
     setInterval(() => {
       this.updateSbbDepartures();
-    }, 300000);
+    }, 5 * 60 * 1000);
   }
 
   async updateSbbDepartures() {
